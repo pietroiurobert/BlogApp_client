@@ -1,0 +1,9 @@
+.tabsContainer {
+    width: 100vw;
+    display: flex;
+    padding-left: 12%;
+}
+
+#addIcon {
+    padding: 2;
+}
