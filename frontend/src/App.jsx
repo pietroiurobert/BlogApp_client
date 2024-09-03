@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './App.css'
 import Posts from './pages/Posts/Posts'
+import Login from "./pages/Login/Login";
+
 import TabListComponent from "./components/Tabs/Tabs";
 import Navbar from "./components/Navbar/Navbar";
 
@@ -24,10 +26,16 @@ function App() {
     <>
         <ChakraProvider theme={theme}>
           <BrowserRouter>
-              <Navbar/>
-              <TabListComponent/>
+              
+              { location.pathname !== '/login' && 
+                <>
+                  <Navbar/>
+                  <TabListComponent/>
+                </>
+              }
               <Routes>
                 <Route path="/" element={<Posts />} />
+                <Route path="/login" element={<Login/>} />
               </Routes>
           </BrowserRouter>
         </ChakraProvider>

@@ -12,11 +12,11 @@ export default function TabListComponent() {
     return (
         <div className={style.tabsContainer}>
             <Tabs position='relative' variant='unstyled'>
-                <TabList display={'flex'} alignItems={'center'}>
+                <TabList display={{base:'none', md: 'flex'}} alignItems={'center'}>
                     <Icon as={AddIcon} boxSize={3} />
                     {
-                        tabs.map((element)=>{
-                           return <Tab> {element} </Tab>
+                        tabs.map((element, index)=>{
+                           return <Tab key={index}> {element} </Tab>
                         })
                     }
                 </TabList>

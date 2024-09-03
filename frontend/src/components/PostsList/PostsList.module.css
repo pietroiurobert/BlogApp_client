@@ -1,0 +1,20 @@
+.postsContainer {
+    width: 58%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 12%;
+    gap: 1rem;
+}
+
+@media screen and (max-width: 992px) {
+    .postsContainer {
+        width: 88%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .postsContainer {
+        width: 100%;
+        padding: 0;
+    }
+}

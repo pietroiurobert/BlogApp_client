@@ -21,6 +21,8 @@ import {
   InputLeftElement
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, SearchIcon, EditIcon } from '@chakra-ui/icons';
+import { BiLogOut } from "react-icons/bi";
+import { color } from 'framer-motion';
 
 
 const Links = ['Dashboard', 'Projects', 'Team'];
@@ -47,7 +49,14 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box 
+        bg={useColorModeValue('gray.100', 'gray.900')} 
+        px={4}  
+        position="sticky"
+        top={0}
+        zIndex={10}
+        boxShadow="md"
+      >
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
@@ -100,7 +109,7 @@ export default function Navbar() {
                 <MenuItem>Link 1</MenuItem>
                 <MenuItem>Link 2</MenuItem>
                 <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem icon={<BiLogOut/>} color={'red'}>Logout</MenuItem>
               </MenuList>
             </Menu>
           </Flex>
