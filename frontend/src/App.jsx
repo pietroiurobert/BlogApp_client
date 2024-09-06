@@ -1,45 +1,57 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import './App.css'
 import Posts from './pages/Posts/Posts'
 import Login from "./pages/Login/Login";
+import WritePost from "./pages/WritePost/WritePost";
 
-import TabListComponent from "./components/Tabs/Tabs";
 import Navbar from "./components/Navbar/Navbar";
 
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, extendTheme, ColorModeScript } from '@chakra-ui/react'
 
-import { extendTheme } from "@chakra-ui/react"
+import './App.css'
+import theme from './theme'
 
-const theme = extendTheme({
-  colors: {
-    brand: {
-      100: "#f7fafc",
-      // ...
-      900: "#1a202c",
-    },
-  },
-})
+function Main() {
+    let location = useLocation()
+
+    const navbarPaths = [
+      '/posts',
+      '/new-story'
+    ];
+
+    const [showNavbar, setShowNavbar] = useState(false);
+
+    useEffect(()=>{
+      setShowNavbar(navbarPaths.includes(location.pathname))
+    }, [location])
+
+  return (
+    <>
+      { showNavbar && <Navbar/> }
+      <div className='pages'>
+        <Routes>
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/new-story" element={<WritePost/>} />
+          <Route path="/" element={<Login/>} />
+        </Routes>
+      </div>
+    </>
+  )
+}
 
 function App() {
   return (
-    <>
-        <ChakraProvider theme={theme}>
-          <BrowserRouter>
-              
-              { location.pathname !== '/login' && 
-                <>
-                  <Navbar/>
-                  <TabListComponent/>
-                </>
-              }
-              <Routes>
-                <Route path="/" element={<Posts />} />
-                <Route path="/login" element={<Login/>} />
-              </Routes>
-          </BrowserRouter>
-        </ChakraProvider>
-    </>
+    <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <BrowserRouter>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <Main />
+      </BrowserRouter>
+    </ChakraProvider>
   )
 }
 

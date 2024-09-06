@@ -7,7 +7,15 @@ export default function PostsList() {
     const [posts, setPosts] = useState([])
     
     const retrievePosts = async () => {
-        axios.get('http://localhost:8080/posts/findAll')
+        axios.get('http://localhost:8080/posts/findAll', {
+            auth: {
+                username: "Robert",
+                password: "1234"
+            },
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
             .then(res=>{
                 setPosts(res.data)
                 console.log(res.data)

@@ -1,8 +1,11 @@
 import style from './Login.module.css'
 import { Box, Button, Card, CardBody, Heading, Input, Text, Stack, Divider, Flex, Checkbox, Icon } from '@chakra-ui/react'
 import { FcGoogle, FcFaq  } from "react-icons/fc";
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+    const navigate = useNavigate()
+
     return (
         <div className={style.mainContainer}>
             <div className={style.loginContainer}>
@@ -30,7 +33,7 @@ export default function Login() {
                     <Text> Forgot password </Text>
                 </Flex>
                 <div className={style.buttonsContainer}>
-                    <Button colorScheme='blue' size={'md'}> Sign in </Button>
+                    <Button colorScheme='blue' size={'md'} onClick={()=>navigate('/posts')}> Sign in </Button>
                     <Button size={'md'} leftIcon={<FcGoogle/>}> Sign in with google </Button>
                 </div>
                 <Flex gap='0.5rem'>

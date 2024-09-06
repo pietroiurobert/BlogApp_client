@@ -23,7 +23,7 @@ import {
 import { HamburgerIcon, CloseIcon, SearchIcon, EditIcon } from '@chakra-ui/icons';
 import { BiLogOut } from "react-icons/bi";
 import { color } from 'framer-motion';
-
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Links = ['Dashboard', 'Projects', 'Team'];
 
@@ -46,6 +46,8 @@ const NavLink = ({ children }) => {
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate()
+  const location = useLocation()
 
   return (
     <>
@@ -66,7 +68,7 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={10} alignItems={'center'}>
-            <Box>Medium</Box>
+            <Box onClick={()=>navigate('/posts')}  _hover={{ cursor: 'pointer' }}>Medium</Box>
             <InputGroup display={{base: 'none', md: 'flex'}} w={'20vw'}>
               <InputLeftElement pointerEvents='none'>
                 <SearchIcon color='gray.300' />
@@ -82,9 +84,13 @@ export default function Navbar() {
             </HStack>
           </HStack>
           <Flex alignItems={'center'} gap={4}>
-            <Button leftIcon={<EditIcon />} variant={'link'} display={{base:'none', md: 'flex'}} >
-              Write a post
-            </Button>
+            {
+              location.pathname!='/new-story' && 
+                <Button leftIcon={<EditIcon />} variant={'link'} display={{base:'none', md: 'flex'}} onClick={()=>navigate('/new-story')}>
+                  Write a post
+                </Button>
+            }
+
             <IconButton
               display={{base: 'flex', md: 'none'}}
               aria-label='Call Segun'

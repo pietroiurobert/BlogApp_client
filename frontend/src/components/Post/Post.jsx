@@ -17,7 +17,7 @@ export default function Post(props) {
                     by {post.testUser.username}
                 </Text>
                 <Text pt='2' fontSize='sm'>
-                    Category: #{post.category}
+                    Category: #{post.postCategory}
                 </Text>
             </CardHeader>
             <CardBody>
